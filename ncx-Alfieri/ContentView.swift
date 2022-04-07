@@ -48,20 +48,6 @@ struct ContentView: View {
 }
 
 
-struct tryView : View {
-    @State var circle = circles(diameter: 150, isAnimated: false)
-    var body: some View {
-        
-        ZStack {
-            animationView(circle: $circle)
-        }.onAppear{
-            withAnimation(Animation.linear(duration: 3.0).repeatForever(autoreverses: true)){
-                circle.isAnimated = true
-                circle.diameter = 270
-            }
-        }
-    }
-}
 
 
 struct downloadingView : View {
@@ -100,30 +86,6 @@ struct downloadingView : View {
         print("\(ViewModel.shared.downloadAmount)")
     }
     
-}
-
-struct circles {
-    
-    var diameter : CGFloat
-    var isAnimated : Bool
-}
-
-
-struct animationView : View {
-    
-    @Binding var circle : circles
-    
-    
-    var body : some View {
-        
-        if #available(iOS 15.0, *) {
-            Circle()
-                .foregroundColor(.red)
-                .frame(width: circle.diameter, height: circle.diameter, alignment: .center)
-        } else {
-            // Fallback on earlier versions
-        }
-    }
 }
 
 extension ContentView {
